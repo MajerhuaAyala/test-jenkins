@@ -32,7 +32,7 @@ pipeline {
                 // Configurar credenciales de AWS
                 withEnv(["AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}", "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"]) {
                     // Desplegar con Serverless Framework
-                    sh 'npx serverless deploy'
+                    sh 'npx serverless deploy --stage dev --region us-east-2'
                 }
             }
         }
