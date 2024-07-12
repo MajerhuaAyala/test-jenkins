@@ -1,0 +1,37 @@
+service: pedidos-ya-ms
+app: pedidos-ya-ms
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  lambdaHashingVersion: 20201221
+  stage: ${opt:stage}
+  apiGateway:
+    shouldStartNameWithService: true
+  region: ${opt:region}
+  role: arn:aws:iam::905418036958:role/deployAdministratorRole
+
+package:
+  exclude:
+    - scripts/**
+    - node_modules/**
+    - layers/**
+    - package.json
+    - package-lock.json
+    - "*.md"
+    - "env.*"
+    - scannerwork/
+    - sonar-project.properties
+  individually: true
+
+functions:
+  createOrder:
+    handler: handler.handler
+    events:
+      - http:
+          path: /orders
+          method: post
+
+plugins:
+  - serverless-offline

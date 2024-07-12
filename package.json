@@ -1,0 +1,15 @@
+{
+  "name": "test-jenkins",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "serverless offline start --stage dev --region us-east-2 --param='functionsFile=local' --verbose"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "serverless-offline": "^13.6.0"
+  }
+}
