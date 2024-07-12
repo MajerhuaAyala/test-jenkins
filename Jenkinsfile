@@ -1,6 +1,8 @@
 pipeline {
     agent any
 
+    tools {nodejs "nodejs"}
+
     environment {
         // Definir variables de entorno para AWS
         AWS_ACCESS_KEY_ID = ''
