@@ -1,7 +1,7 @@
 pipeline {
     agent any
 
-    tools {nodejs "nodejs"}
+    tools {nodejs "nodejs20"}
 
     environment {
         // Definir variables de entorno para AWS
