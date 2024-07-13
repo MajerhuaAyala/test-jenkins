@@ -1,3 +1,3 @@
 module.exports.handler = async () => {
-    return "hola mundo desde dev"
+    return "hola mundo desde dev v2"
 }
