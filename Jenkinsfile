@@ -30,12 +30,15 @@ pipeline {
             }
             steps {
                 script {
+                    // Cambiar el valor de STAGE basado en el branch
                     if (env.BRANCH_NAME == 'main') {
                         env.AWS_ACCESS_KEY_ID = input message: 'Please enter AWS Access Key ID:', parameters: [string(defaultValue: '', description: 'AWS Access Key ID', name: 'AWS_ACCESS_KEY_ID')]
                         env.AWS_SECRET_ACCESS_KEY = input message: 'Please enter AWS Secret Access Key:', parameters: [string(defaultValue: '', description: 'AWS Secret Access Key', name: 'AWS_SECRET_ACCESS_KEY')]
-                    } else {
+                    } else if (env.BRANCH_NAME == 'dev') {
                         env.AWS_ACCESS_KEY_ID = credentials('aws_access_key_id')
                         env.AWS_SECRET_ACCESS_KEY = credentials('aws_secret_access_key')
+                    } else {
+                        error "Branch ${env.BRANCH_NAME} is not a valid deployment branch"
                     }
                     echo "STAGE: ${STAGE}"
                 }
