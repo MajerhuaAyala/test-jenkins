@@ -3,10 +3,6 @@ pipeline {
 
     tools { nodejs "nodejs20" }
 
-    environment {
-        STAGE = "default"
-    }
-
     stages {
         stage('Install Dependencies') {
             steps {
@@ -30,7 +26,7 @@ pipeline {
                     }
 
                     // Imprimir el valor de STAGE para confirmar que ha cambiado
-                    echo "STAGE is set to: ${env.BRANCH_NAME}"
+                    echo "STAGE is set to: ${env.BRANCH_NAME} ${env.AWS_ACCESS_KEY_ID} ${env.AWS_SECRET_ACCESS_KEY}"
                 }
                 withEnv(["AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}", "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"]) {
                     // Desplegar con Serverless Framework
