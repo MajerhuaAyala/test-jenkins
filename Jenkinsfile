@@ -37,11 +37,12 @@ pipeline {
                         env.AWS_ACCESS_KEY_ID = credentials('aws_access_key_id')
                         env.AWS_SECRET_ACCESS_KEY = credentials('aws_secret_access_key')
                     }
+                    echo "STAGE: ${STAGE}"
                 }
                 // Configurar credenciales de AWS
                 withEnv(["AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}", "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"]) {
                     // Desplegar con Serverless Framework
-                    sh 'npx serverless deploy --stage ${STAGE} --region us-east-2'
+                    sh "npx serverless deploy --stage ${STAGE} --region us-east-2"
                 }
             }
         }
