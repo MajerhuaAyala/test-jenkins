@@ -28,6 +28,9 @@ pipeline {
                     }
                 }
             }
+
+            echo "STAGE: ${STAGE}"
+
             steps {
                 script {
                     // Cambiar el valor de STAGE basado en el branch
@@ -40,7 +43,6 @@ pipeline {
                     } else {
                         error "Branch ${env.BRANCH_NAME} is not a valid deployment branch"
                     }
-                    echo "STAGE: ${STAGE}"
                 }
                 // Configurar credenciales de AWS
                 withEnv(["AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}", "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"]) {
