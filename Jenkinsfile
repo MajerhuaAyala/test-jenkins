@@ -4,7 +4,7 @@ pipeline {
     tools { nodejs "nodejs20" }
 
     environment {
-        STAGE = "dev"
+        STAGE = "default"
     }
 
     stages {
