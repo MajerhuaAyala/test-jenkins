@@ -26,7 +26,8 @@ pipeline {
                         branch 'main'
                         environment name: "STAGE", value: "main"
                     }
-                echo "STAGE: ${STAGE}"
+                    echo "STAGE: ${STAGE}"
+                }
             }
 
 
