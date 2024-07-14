@@ -8,26 +8,6 @@ pipeline {
     }
 
     stages {
-        stage('Set Environment Variables') {
-            steps {
-                script {
-                    // Cambiar el valor de la variable de entorno `STAGE` basado en el branch
-                    if (env.BRANCH_NAME == 'main') {
-                        env.STAGE = 'production'
-                    } else if (env.BRANCH_NAME == 'dev') {
-                        env.STAGE = 'development'
-                    } else {
-                        env.STAGE = 'unknown'
-                    }
-
-                    echo "BRANCH_NAME: ${env.BRANCH_NAME} ${env.BRANCH_NAME == 'dev'}"
-
-                    // Imprimir el valor de STAGE para confirmar que ha cambiado
-                    echo "The STAGE variable is set to: ${env.STAGE}"
-                }
-            }
-        }
-
         stage('Install Dependencies') {
             steps {
                 // Instalar dependencias
@@ -50,11 +30,11 @@ pipeline {
                     }
 
                     // Imprimir el valor de STAGE para confirmar que ha cambiado
-                    echo "STAGE is set to: ${STAGE}"
+                    echo "STAGE is set to: ${env.BRANCH_NAME}"
                 }
                 withEnv(["AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}", "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"]) {
                     // Desplegar con Serverless Framework
-                    sh "npx serverless deploy --stage ${STAGE} --region us-east-2"
+                    sh "npx serverless deploy --stage ${env.BRANCH_NAME} --region us-east-2"
                 }
             }
         }
