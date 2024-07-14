@@ -20,7 +20,7 @@ pipeline {
                         env.STAGE = 'unknown'
                     }
 
-                    echo "BRANCH_NAME: ${env.BRANCH_NAME}"
+                    echo "BRANCH_NAME: ${env.BRANCH_NAME} ${env.BRANCH_NAME == 'dev'}"
 
                     // Imprimir el valor de STAGE para confirmar que ha cambiado
                     echo "The STAGE variable is set to: ${env.STAGE}"
