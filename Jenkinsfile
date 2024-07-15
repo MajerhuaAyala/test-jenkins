@@ -11,6 +11,12 @@ pipeline {
             }
         }
 
+        stage("Run TEST") {
+            steps {
+                sh "npm run test"
+            }
+        }
+
         stage("Deploy AWS DEV") {
             when {
                 branch 'dev'
